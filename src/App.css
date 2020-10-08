@@ -1,0 +1,33 @@
+h1{
+    font-size: x-large;
+    text-align: left;
+}
+form{
+    position: absolute;
+    left:2%;
+    display: inline;
+
+}
+
+
+form>input,form>button{
+    text-align: center;
+    display: block;
+}
+form>p{
+    display: inline;
+}
+
+#correct{
+    position:absolute;
+    top:35vh;
+}
+#wrong{
+    position:absolute;
+    top:35vh;
+}
+
+#buttons{
+    position: absolute;
+    top:30vh;
+}

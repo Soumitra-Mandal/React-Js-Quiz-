@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Correct from './correct';
 import Wrong from './wrong';
-//import {useState} from 'react';
 
 
 class App extends React.Component {
@@ -20,7 +19,11 @@ componentDidMount() {
  componentDidUpdate(){
  }
 
-
+  decodeHtml(html) {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+}
 fetchUsers() {
   fetch(`https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple`)
     .then(response => response.json())
@@ -36,7 +39,6 @@ fetchUsers() {
 }
 
   handleSubmit=(e)=>{
-  e.preventDefault();
   this.setState({submit:true});
   }
 
@@ -48,7 +50,9 @@ fetchUsers() {
   }
   handleNew = (e)=>{
     e.preventDefault();
+    this.setState({submit:false});
     this.fetchUsers();
+    
 
   }
 
@@ -66,18 +70,19 @@ if(this.state.correct===e.target.value){
   render(){
     if(this.state.submit===false){
       return (
-        <div className="App">
+        <div className="App">        
+        <h1>{this.decodeHtml(this.state.question)}</h1>
         <form>
-        <h1>{this.state.question}</h1>
-        <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange}  />A. {this.state.correct}
-        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange}/>B. {this.state.incorrect[0]}
-        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange}/>C. {this.state.incorrect[1]}
-        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange}/>D. {this.state.incorrect[2]}
-
-        <button onClick={this.handleSubmit}>Submit</button>
-        <button onClick={this.handleNew}>New</button>
-
+        <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange} /><p>A. {this.decodeHtml(this.state.correct)}</p>
+        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange}/><p>B. {this.decodeHtml(this.state.incorrect[0])}</p>
+        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange}/><p>C. {this.decodeHtml(this.state.incorrect[1])}</p>
+        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange} /><p>D. {this.decodeHtml(this.state.incorrect[2])}</p>
         </form>
+        <div id ='buttons'> 
+        <button onClick={this.handleSubmit} id = "submit">Submit</button>
+        <button onClick={this.handleNew} id  = 'new'>New</button>
+        </div>
+      
         </div>
       );
     }
@@ -86,18 +91,19 @@ if(this.state.correct===e.target.value){
       if(this.state.res===true){
         return (
           <div className="App">
+        <h1>{this.decodeHtml(this.state.question)}</h1>
           <form>
-          <h1>{this.state.question}</h1>
-        <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange} checked="unchecked" disabled/>A. {this.state.correct}
-        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange} disabled/>B. {this.state.incorrect[0]}
-        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange} disabled/>C. {this.state.incorrect[1]}
-        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange} disabled/>D. {this.state.incorrect[2]}
-
-          <button onClick={this.handleSubmit}>Submit</button>
-          <button onClick={this.handleReset}>Reset</button>
-          <button onClick={this.handleNew}>New</button>
+        <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange}  checked ='unchecked' disabled/>A. {this.decodeHtml(this.state.correct)}
+        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange}  disabled/>B. {this.decodeHtml(this.state.incorrect[0])}
+        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange}  disabled/>C. {this.decodeHtml(this.state.incorrect[1])}
+        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange}  disabled/>D. {this.decodeHtml(this.state.incorrect[2])}
 
           </form>
+          <div id = 'buttons'>
+          <button onClick={this.handleSubmit} id = "submit">Submit</button>
+          <button onClick={this.handleReset} id="reset">Reset</button>
+          <button onClick={this.handleNew} id  = 'new'>New</button>
+          </div>
           <Correct/>
           </div>
         );
@@ -105,18 +111,19 @@ if(this.state.correct===e.target.value){
       else{
         return (
           <div className="App">
+        <h1>{this.decodeHtml(this.state.question)}</h1>
           <form>
-          <h1>{this.state.question}</h1>
-          <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange} checked="unchecked" disabled/>A. {this.state.correct}
-        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange} disabled/>B. {this.state.incorrect[0]}
-        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange} disabled/>C. {this.state.incorrect[1]}
-        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange} disabled/>D. {this.state.incorrect[2]}
-          <button onClick={this.handleSubmit}>Submit</button>
-          <button onClick={this.handleReset}>Reset</button>
-          <button onClick={this.handleNew}>New</button>
-
-
-          </form>
+          <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange}   disabled/>A. {this.decodeHtml(this.state.correct)}
+        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange}  disabled/>B. {this.decodeHtml(this.state.incorrect[0])}
+        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange}  disabled/>C. {this.decodeHtml(this.state.incorrect[1])}
+        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange}  disabled/>D. {this.decodeHtml(this.state.incorrect[2])}
+          
+         </form>
+         <div id = 'buttons'>
+          <button onClick={this.handleSubmit} id = "submit">Submit</button>
+          <button onClick={this.handleReset} id="reset">Reset</button>
+          <button onClick={this.handleNew} id  = 'new'>New</button>
+          </div>
           <Wrong/>
           </div>
         );
