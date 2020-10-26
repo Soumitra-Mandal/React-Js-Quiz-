@@ -1,33 +1,49 @@
 h1{
     font-size: x-large;
     text-align: left;
-}
-form{
-    position: absolute;
-    left:2%;
-    display: inline;
-
-}
-
-
-form>input,form>button{
-    text-align: center;
-    display: block;
-}
-form>p{
-    display: inline;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 2%;
 }
 
 #correct{
     position:absolute;
-    top:35vh;
+    top:47vh;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px ;
+    margin-left: 3%;
+    
 }
 #wrong{
     position:absolute;
-    top:35vh;
+    top:47vh;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px ;
+    margin-left: 3%;
 }
 
 #buttons{
     position: absolute;
-    top:30vh;
+    top:38vh;
+    margin:2%;
+    width: 40vw;
+}
+#reset{
+    background-color: teal;
+    color: white;
+}
+
+.App{
+    margin-top: 0;
+}
+body{
+    background-color: whitesmoke;
+    margin:0;
+}
+
+.opt{
+   position: relative;
+   padding-left: 16%;
+}
+#new,#submit,#reset{
+    margin-right: 2%;
 }

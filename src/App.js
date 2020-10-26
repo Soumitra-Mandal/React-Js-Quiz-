@@ -1,7 +1,16 @@
 import React from 'react';
 import './App.css';
+import { Button } from '@material-ui/core';
 import Correct from './correct';
 import Wrong from './wrong';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 
 
 class App extends React.Component {
@@ -70,17 +79,30 @@ if(this.state.correct===e.target.value){
   render(){
     if(this.state.submit===false){
       return (
-        <div className="App">        
+      
+        <div className="App">  
+        <AppBar position="static">
+  <Toolbar>
+    <IconButton edge="start"  color="inherit" aria-label="menu">
+    </IconButton>
+    <Typography variant="h6" >
+      QUIZ
+    </Typography>
+  </Toolbar>
+</AppBar>      
         <h1>{this.decodeHtml(this.state.question)}</h1>
-        <form>
-        <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange} /><p>A. {this.decodeHtml(this.state.correct)}</p>
-        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange}/><p>B. {this.decodeHtml(this.state.incorrect[0])}</p>
-        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange}/><p>C. {this.decodeHtml(this.state.incorrect[1])}</p>
-        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange} /><p>D. {this.decodeHtml(this.state.incorrect[2])}</p>
-        </form>
+        <FormControl component ='fieldset'>
+        <RadioGroup aria-label="gender" name="answer" >
+
+        <FormControlLabel control={<Radio/>} value={this.state.correct}  className="opt" onChange={this.handleChange} label={this.decodeHtml(this.state.correct)}/>
+        <FormControlLabel control={<Radio/>} value={this.state.incorrect[0]}  className="opt" onChange ={this.handleChange} label= {this.decodeHtml(this.state.incorrect[0])}/>
+        <FormControlLabel control={<Radio/>} value={this.state.incorrect[1]}  className="opt" onChange ={this.handleChange} label= {this.decodeHtml(this.state.incorrect[1])}/>
+        <FormControlLabel control={<Radio/>} value={this.state.incorrect[2]}  className="opt" onChange ={this.handleChange} label= {this.decodeHtml(this.state.incorrect[2])}/>
+        </RadioGroup>
+        </FormControl>
         <div id ='buttons'> 
-        <button onClick={this.handleSubmit} id = "submit">Submit</button>
-        <button onClick={this.handleNew} id  = 'new'>New</button>
+        <Button variant='contained' onClick={this.handleSubmit} id = "submit" color="primary">Submit</Button>
+        <Button variant='contained'  onClick={this.handleNew} id  = 'new' color='secondary'>New</Button>
         </div>
       
         </div>
@@ -91,18 +113,29 @@ if(this.state.correct===e.target.value){
       if(this.state.res===true){
         return (
           <div className="App">
+           <AppBar position="static">
+  <Toolbar>
+    <IconButton edge="start"  color="inherit" aria-label="menu">
+    </IconButton>
+    <Typography variant="h6" >
+      QUIZ
+    </Typography>
+  </Toolbar>
+</AppBar>    
         <h1>{this.decodeHtml(this.state.question)}</h1>
-          <form>
-        <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange}  checked ='unchecked' disabled/>A. {this.decodeHtml(this.state.correct)}
-        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange}  disabled/>B. {this.decodeHtml(this.state.incorrect[0])}
-        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange}  disabled/>C. {this.decodeHtml(this.state.incorrect[1])}
-        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange}  disabled/>D. {this.decodeHtml(this.state.incorrect[2])}
+        <FormControl component ='fieldset'>
+        <RadioGroup aria-label="gender" name="answer" >
 
-          </form>
+        <FormControlLabel control={<Radio/>} value={this.state.correct}  className="opt" onChange={this.handleChange} disabled label={this.decodeHtml(this.state.correct)}/>
+        <FormControlLabel control={<Radio/>} value={this.state.incorrect[0]}  className="opt" onChange ={this.handleChange} disabled label= {this.decodeHtml(this.state.incorrect[0])}/>
+        <FormControlLabel control={<Radio/>} value={this.state.incorrect[1]}  className="opt" onChange ={this.handleChange} disabled label= {this.decodeHtml(this.state.incorrect[1])}/>
+        <FormControlLabel control={<Radio/>} value={this.state.incorrect[2]}  className="opt" onChange ={this.handleChange} disabled label= {this.decodeHtml(this.state.incorrect[2])}/>
+        </RadioGroup>
+        </FormControl>
           <div id = 'buttons'>
-          <button onClick={this.handleSubmit} id = "submit">Submit</button>
-          <button onClick={this.handleReset} id="reset">Reset</button>
-          <button onClick={this.handleNew} id  = 'new'>New</button>
+          <Button variant='contained'  onClick={this.handleSubmit} color="primary" id = "submit">Submit</Button>
+          <Button variant='contained'  onClick={this.handleReset} id="reset">Reset</Button>
+          <Button variant='contained'  onClick={this.handleNew} color='secondary' id  = 'new'>New</Button>
           </div>
           <Correct/>
           </div>
@@ -111,18 +144,29 @@ if(this.state.correct===e.target.value){
       else{
         return (
           <div className="App">
+           <AppBar position="static">
+  <Toolbar>
+    <IconButton edge="start"  color="inherit" aria-label="menu">
+    </IconButton>
+    <Typography variant="h6" >
+      QUIZ
+    </Typography>
+  </Toolbar>
+</AppBar>    
         <h1>{this.decodeHtml(this.state.question)}</h1>
-          <form>
-          <input type='radio' value={this.state.correct} name='answer' onChange ={this.handleChange}   disabled/>A. {this.decodeHtml(this.state.correct)}
-        <input type='radio' value={this.state.incorrect[0]} name='answer' onChange ={this.handleChange}  disabled/>B. {this.decodeHtml(this.state.incorrect[0])}
-        <input type='radio' value={this.state.incorrect[1]} name='answer' onChange ={this.handleChange}  disabled/>C. {this.decodeHtml(this.state.incorrect[1])}
-        <input type='radio' value={this.state.incorrect[2]} name='answer' onChange ={this.handleChange}  disabled/>D. {this.decodeHtml(this.state.incorrect[2])}
-          
-         </form>
+        <FormControl component ='fieldset'>
+        <RadioGroup aria-label="gender" name="answer" >
+
+        <FormControlLabel control={<Radio/>} className="opt" value={this.state.correct} onChange={this.handleChange} disabled label={this.decodeHtml(this.state.correct)}/>
+        <FormControlLabel control={<Radio/>}  className="opt" value={this.state.incorrect[0]} disabled onChange ={this.handleChange} label= {this.decodeHtml(this.state.incorrect[0])}/>
+        <FormControlLabel control={<Radio/>}  className="opt" value={this.state.incorrect[1]} disabled onChange ={this.handleChange} label= {this.decodeHtml(this.state.incorrect[1])}/>
+        <FormControlLabel control={<Radio/>}  className="opt" value={this.state.incorrect[2]} disabled onChange ={this.handleChange} label= {this.decodeHtml(this.state.incorrect[2])}/>
+        </RadioGroup>
+        </FormControl>
          <div id = 'buttons'>
-          <button onClick={this.handleSubmit} id = "submit">Submit</button>
-          <button onClick={this.handleReset} id="reset">Reset</button>
-          <button onClick={this.handleNew} id  = 'new'>New</button>
+          <Button variant='contained'  onClick={this.handleSubmit} color="primary" id = "submit">Submit</Button>
+          <Button variant='contained'  onClick={this.handleReset} id="reset">Reset</Button>
+          <Button variant='contained'  onClick={this.handleNew} color='secondary' id  = 'new'>New</Button>
           </div>
           <Wrong/>
           </div>

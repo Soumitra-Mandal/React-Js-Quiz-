@@ -1,6 +1,7 @@
 #correct{
-    width:200px;
+    width:220px;
     background-color: lightgreen;
     text-align: center;
     color: green;
+    border-radius: 50px;
 }

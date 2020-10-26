@@ -1,6 +1,7 @@
 #wrong{
-    width:200px;
+    width:220px;
     background-color: #ffcccb;
     text-align: center;
     color: red;
+    border-radius: 50px;
 }
