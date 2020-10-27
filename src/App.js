@@ -19,7 +19,7 @@ state={
   submit:false,
   question:'',
   incorrect:[],
-  correct:''
+  correct:'',
 }
 
 componentDidMount() {
